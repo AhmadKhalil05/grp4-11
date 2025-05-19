@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ReportController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,5 +17,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/report', [ReportController::class, 'index'])->name('report.index');
+Route::get('/report/create', [ReportController::class, 'create'])->name('report.create');
+Route::post('/report', [ReportController::class, 'store'])->name('report.store');
+Route::get('/report/{report}/edit', [ReportController::class, 'edit'])->name('report.edit');
+Route::put('/report/{report}/update', [ReportController::class, 'update'])->name('report.update');
+Route::delete('/report/{report}/destroy', [ReportController::class, 'destroy'])->name('report.destroy');
 
 require __DIR__.'/auth.php';
